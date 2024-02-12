@@ -1,18 +1,57 @@
-<?php
-if(isset($_POST['submit'])) {
-    $oldFileName = $_POST['oldFileName'];
-    $newFileName = $_POST['newFileName'];
-    
-    if(rename($oldFileName, $newFileName)) {
-        echo "File renamed successfully.";
-    } else {
-        echo "Error renaming file.";
-    }
-}
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Clipboard</title>
+<style>
+  textarea {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Old File URL: <input type="text" name="oldFileName"><br>
-    New File Name: <input type="text" name="newFileName"><br>
-    <input type="submit" name="submit" value="Rename">
-</form>
+<textarea id="clipboard" placeholder="Copy and paste your text here"></textarea>
+<button onclick="saveToClipboard()">Save</button>
+
+<script>
+function saveToClipboard() {
+  var textToCopy = document.getElementById("clipboard").value;
+  if (textToCopy !== "") {
+    // Create a new textarea element to hold the text to copy
+    var tempTextArea = document.createElement("textarea");
+    tempTextArea.value = textToCopy;
+    document.body.appendChild(tempTextArea);
+    
+    // Select the text within the textarea
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999); /* For mobile devices */
+    
+    // Copy the selected text
+    document.execCommand("copy");
+    
+    // Remove the temporary textarea
+    document.body.removeChild(tempTextArea);
+    
+    alert("Text copied to clipboard!");
+  } else {
+    alert("Nothing to copy!");
+  }
+}
+</script>
+
+</body>
+</html>
