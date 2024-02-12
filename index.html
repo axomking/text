@@ -31,26 +31,22 @@
 function saveToClipboard() {
   var textToCopy = document.getElementById("clipboard").value;
   if (textToCopy !== "") {
-    // Create a new textarea element to hold the text to copy
-    var tempTextArea = document.createElement("textarea");
-    tempTextArea.value = textToCopy;
-    document.body.appendChild(tempTextArea);
-    
-    // Select the text within the textarea
-    tempTextArea.select();
-    tempTextArea.setSelectionRange(0, 99999); /* For mobile devices */
-    
-    // Copy the selected text
-    document.execCommand("copy");
-    
-    // Remove the temporary textarea
-    document.body.removeChild(tempTextArea);
+    // Store the text in localStorage
+    localStorage.setItem("clipboardText", textToCopy);
     
     alert("Text copied to clipboard!");
   } else {
     alert("Nothing to copy!");
   }
 }
+
+// Check if there's text in localStorage on page load
+window.onload = function() {
+  var storedText = localStorage.getItem("clipboardText");
+  if (storedText !== null) {
+    document.getElementById("clipboard").value = storedText;
+  }
+};
 </script>
 
 </body>
