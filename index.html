@@ -25,28 +25,27 @@
 <body>
 
 <textarea id="clipboard" placeholder="Copy and paste your text here"></textarea>
-<button onclick="saveToClipboard()">Save</button>
+<button onclick="saveToServer()">Save</button>
 
 <script>
-function saveToClipboard() {
+function saveToServer() {
   var textToCopy = document.getElementById("clipboard").value;
   if (textToCopy !== "") {
-    // Store the text in localStorage
-    localStorage.setItem("clipboardText", textToCopy);
-    
-    alert("Text copied to clipboard!");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/save", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        alert("Text saved successfully!");
+      } else {
+        alert("Error saving text!");
+      }
+    };
+    xhr.send(JSON.stringify({ text: textToCopy }));
   } else {
-    alert("Nothing to copy!");
+    alert("Nothing to save!");
   }
 }
-
-// Check if there's text in localStorage on page load
-window.onload = function() {
-  var storedText = localStorage.getItem("clipboardText");
-  if (storedText !== null) {
-    document.getElementById("clipboard").value = storedText;
-  }
-};
 </script>
 
 </body>
