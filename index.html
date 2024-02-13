@@ -24,14 +24,25 @@
     <script>
         function saveText() {
             var text = document.getElementById("textArea").value;
-            var blob = new Blob([text], { type: "text/plain" });
-            var url = URL.createObjectURL(blob);
-            var a = document.createElement("a");
-            a.href = url;
-            a.download = "text.txt";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            var existingText = ''; // Initialize empty string to store existing text
+            var reader = new FileReader();
+
+            // Check if there's an existing file
+            reader.onload = function(event) {
+                existingText = event.target.result; // Read the existing text
+                var updatedText = existingText + '\n' + text; // Append new text
+                var blob = new Blob([updatedText], { type: "text/plain" });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                a.href = url;
+                a.download = "text.txt";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+
+            // Read the existing file asynchronously
+            reader.readAsText(new Blob([''], { type: 'text/plain' }));
         }
     </script>
 </body>
