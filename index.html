@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Convert Text</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert Text</title>
 </head>
 <body>
 
-<form method="post">
+<form id="convertForm">
     <label for="inputText">Enter Text:</label><br>
     <input type="text" id="inputText" name="inputText"><br><br>
-    <input type="submit" value="Convert">
+    <button type="button" onclick="convertText()">Convert</button>
 </form>
 
-<?php
-function convertToCapitalizedCase($inputString) {
-    return ucwords(strtolower($inputString));
-}
+<div id="output"></div>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input = $_POST["inputText"];
-    $output = convertToCapitalizedCase($input);
-    echo "Converted Text: " . $output;
+<script>
+function convertText() {
+    var inputText = document.getElementById("inputText").value;
+    var outputElement = document.getElementById("output");
+    
+    if(inputText.trim() === "") {
+        outputElement.textContent = "Please enter some text.";
+    } else {
+        var capitalizedText = inputText.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+        outputElement.textContent = "Converted Text: " + capitalizedText;
+    }
 }
-?>
+</script>
 
 </body>
 </html>
