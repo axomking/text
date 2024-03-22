@@ -13,7 +13,10 @@
     <button type="button" onclick="convertText()">Convert</button>
 </form>
 
-<div id="output"></div>
+<div>
+    <label for="output">Converted Text:</label><br>
+    <textarea id="output" rows="4" cols="50" readonly></textarea>
+</div>
 
 <script>
 function convertText() {
@@ -24,7 +27,7 @@ function convertText() {
         outputElement.textContent = "Please enter some text.";
     } else {
         var capitalizedText = inputText.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-        outputElement.textContent = "Converted Text: " + capitalizedText;
+        outputElement.value = capitalizedText;
     }
 }
 </script>
