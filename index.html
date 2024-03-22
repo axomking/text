@@ -1,136 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Export Form Data to XLSX</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script> <!-- Include the XLSX library -->
-<style>
-    .hidden-label {
-        display: none;
-    }
-</style>
-<script>
-function exportToXLSX() {
-    var formData = new FormData(document.getElementById("data-form"));
-    var workbook = XLSX.utils.book_new();
-    var worksheet = XLSX.utils.json_to_sheet([Object.fromEntries(formData)]); // Wrap form data in an array
-
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-    // Save workbook
-    XLSX.writeFile(workbook, 'data.xlsx');
-}
-</script>
+    <title>Convert Text</title>
 </head>
 <body>
-<form id="data-form">
-    <label for="crbt_cuts">CRBT Cuts:</label>
-    <input type="text" id="CRBT CUTS" name="CRBT CUTS"><br><br>
 
-    <label for="song">Song:</label>
-    <input type="text" id="SONG" name="SONG"><br><br>
-
-    <label for="film_album">Film/Album:</label>
-    <input type="text" id="FILM/ALBUM" name="FILM/ALBUM"><br><br>
-
-    <label for="album_category" class="hidden-label">Album Category:</label>
-    <input type="hidden" id="ALBUM CATEGORY" name="ALBUM CATEGORY" value="Original">
-
-    <label for="language" class="hidden-label">Language:</label>
-    <input type="hidden" id="LANGUAGE" name="LANGUAGE" value="Assamese">
-
-    <label for="genre_category" class="hidden-label">Genre/Category:</label>
-    <input type="hidden" id="GENRE/ Category" name="GENRE/ Category" value="Album">
-
-    <label for="sub_category" class="hidden-label">Sub Category:</label>
-    <input type="hidden" id="Sub Category" name="Sub Category" value="Romantic">
-
-    <label for="description" class="hidden-label">Description:</label>
-    <input type="hidden" id="Description" name="Description">
-
-    <label for="physical_file_name" class="hidden-label">Physical File Name:</label>
-    <input type="hidden" id="Physical File name" name="Physical File name">
-
-    <label for="physical_artwork_name" class="hidden-label">Physical Artwork Name:</label>
-    <input type="hidden" id="Physical artwork name" name="Physical artwork name">
-
-    <label for="track_duration">Track Duration:</label>
-    <input type="text" id="Track Duration" name="Track Duration" value="00:00:00"><br><br>
-
-    <label for="track_no" class="hidden-label">Track No.:</label>
-    <input type="hidden" id="Track no." name="Track no.">
-
-    <label for="upc_id" class="hidden-label">UPC ID:</label>
-    <input type="hidden" id="UPC ID" name="UPC ID">
-
-    <label for="date_movie_release" class="hidden-label">Date of Movie Release:</label>
-    <input type="hidden" id="DATE OF MOVIE RELEASE" name="DATE OF MOVIE RELEASE">
-
-    <label for="Date of Music Release:">Release Date:</label>
-    <input type="date" id="DATE OF MUSIC RELEASE" name="DATE OF MUSIC RELEASE"value="09-08-2023"><br><br>
-
-    <label for="date_expiry" class="hidden-label">Date of Expiry:</label>
-    <input type="hidden" id="DATE OF EXPIRY" name="DATE OF EXPIRY">
-
-    <label for="film_banner" class="hidden-label">Film Banner:</label>
-    <input type="hidden" id="Film Banner" name="Film Banner">
-
-    <label for="director" class="hidden-label">Director:</label>
-    <input type="hidden" id="Director" name="Director">
-
-    <label for="producer" class="hidden-label">Producer:</label>
-    <input type="hidden" id="Producer" name="Producer">
-
-    <label for="star_cast" class="hidden-label">Star Cast:</label>
-    <input type="hidden" id="Star cast" name="Star cast">
-
-    <label for="isrc">ISRC:</label>
-    <input type="text" id="ISRC" name="ISRC"><br><br>
-
-    <label for="label" class="hidden-label">Label:</label>
-    <input type="hidden" id="LABEL" name="LABEL" value="Prag Music">
-
-    <label for="publisher" class="hidden-label">Publisher:</label>
-    <input type="hidden" id="Publisher" name="Publisher" value="Prag Music">
-
-    <label for="iprs_ownership" class="hidden-label">IPRS Ownership (Yes/No):</label>
-    <input type="hidden" id="IPRS Ownership (Yes/No)" name="IPRS Ownership (Yes/No)" value="Yes">
-
-    <label for="lyricist">Lyricist:</label>
-    <input type="text" id="LYRICIST" name="LYRICIST"><br><br>
-
-    <label for="iprs_member" class="hidden-label">IPRS Member (Yes/No)</label>
-    <input type="hidden" id="IPRS member  (Yes/No)" name="IPRS member  (Yes/No)" value="Yes">
-
-    <label for="iswc" class="hidden-label">ISWC:</label>
-    <input type="hidden" id="ISWC" name="ISWC">
-
-    <label for="composer">Music:</label>
-    <input type="text" id="COMPOSER" name="COMPOSER"><br><br>
-
-    <label for="IPRS_member" class="hidden-label">IPRS Member (Yes/No)</label>
-<input type="hidden" id="IPRS member  (Yes/No)" name="IPRS member  (Yes/No)" value="Yes">
-
-    <label for="artist1">Singer:</label>
-    <input type="text" id="ARTIST1/ Singer" name="ARTIST1/ Singer"><br><br>
-
-    <label for="sound_recording_rights" class="hidden-label">Sound Recording Rights:</label>
-    <input type="hidden" id="SOUND RECORDING RIGHTS" name="SOUND RECORDING RIGHTS" value="Prag Music">
-
-    <label for="musical_literary_works" class="hidden-label">Musical & Literary Works:</label>
-    <input type="hidden" id="MUSICAL & LITERARY WORKS" name="MUSICAL & LITERARY WORKS" value="Prag Music">
-
-    <label for="pay_to_rights" class="hidden-label">Pay To Rights:</label>
-    <input type="hidden" id="PAY To Rights" name="PAY To Rights" value="PDL">
-
-    <label for="mood" class="hidden-label">Mood:</label>
-    <input type="hidden" id="Mood" name="Mood" value="Happy">
-    
-    <label for="time">Callertune Time:</label>
-    <input type="text" id="Time" name="Time" value="00:00:00"><br><br>
-
-    <button type="button" onclick="exportToXLSX()">Export to XLSX</button>
+<form method="post">
+    <label for="inputText">Enter Text:</label><br>
+    <input type="text" id="inputText" name="inputText"><br><br>
+    <input type="submit" value="Convert">
 </form>
+
+<?php
+function convertToCapitalizedCase($inputString) {
+    return ucwords(strtolower($inputString));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input = $_POST["inputText"];
+    $output = convertToCapitalizedCase($input);
+    echo "Converted Text: " . $output;
+}
+?>
+
 </body>
 </html>
