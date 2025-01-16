@@ -3,49 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet">
-  <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/videojs-youtube/dist/Youtube.min.js"></script>
+  <title>Video Thumbnail</title>
   <style>
-    .video-container {
-      text-align: center;
-      margin-top: 20px;
+    .video-thumbnail {
+      position: relative;
+      width: 640px;
+      height: 360px;
+      background-image: url('thumbnail.jpg'); /* Replace with your thumbnail URL */
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
     }
-    .watch-button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #007BFF;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .watch-button:hover {
-      background-color: #0056b3;
+
+    .play-button::before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 20px 0 20px 35px;
+      border-color: transparent transparent transparent white;
+      margin-left: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <!-- Video.js Player -->
-    <video
-      id="my-video"
-      class="video-js vjs-default-skin"
-      controls
-      preload="auto"
-      width="640"
-      height="360"
-      data-setup='{
-        "techOrder": ["youtube"],
-        "sources": [{ "type": "video/youtube", "src": "https://youtu.be/igQKgJmIozg" }]
-      }'
-    ></video>
-
-    <!-- Link Below -->
-    <a href="https://youtu.be/igQKgJmIozg" class="watch-button" target="_blank">Watch the video</a>
+  <div class="video-thumbnail" onclick="window.location.href='https://www.google.com';">
+    <div class="play-button"></div>
   </div>
 </body>
 </html>
