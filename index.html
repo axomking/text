@@ -1,10 +1,27 @@
-<script>
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if (/android/i.test(userAgent)) {
-    window.location.href = "youtube://www.youtube.com/watch?v=dQw4w9WgXcQ";
-  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    window.location.href = "vnd.youtube://dQw4w9WgXcQ";
-  } else {
-    window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Video</title>
+    <style>
+        .watch-now {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .watch-now:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <a class="watch-now" href="intent://www.youtube.com/watch?v=dQw4w9WgXcQ#Intent;package=com.google.android.youtube;scheme=https;end;" target="_blank">Watch Now</a>
+</body>
+</html>
