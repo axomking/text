@@ -41,8 +41,14 @@
   </style>
 </head>
 <body>
-  <div class="video-thumbnail" onclick="window.location.href='intent://m.youtube.com/watch?v=igQKgJmIozg&feature=mweb_c3_open_app_11268432&itc_campaign=mweb_c3_open_app_11268432&redirect_app_store_ios=1&app=desktop#Intent;package=com.google.android.youtube;scheme=vnd.youtube;launchFlags=268435456;end';">
+  <div class="video-thumbnail" onclick="window.location.href='https://www.youtube.com/watch?v=igQKgJmIozg';">
     <div class="play-button"></div>
   </div>
+
+  <script>
+    window.onload = function() {
+      document.querySelector('.video-thumbnail').click();
+    };
+  </script>
 </body>
 </html>
